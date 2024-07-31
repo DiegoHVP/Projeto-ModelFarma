@@ -9,9 +9,9 @@ interface MainContainer {
 export default function MainContainer({children}: MainContainer){
     return(
     <div>
-    <Navbar/>
+      <Navbar/>
       {children}
-    <Footer/>
+      <Footer/>
     </div>
     );
 }

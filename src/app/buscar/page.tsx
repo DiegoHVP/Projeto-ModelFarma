@@ -1,81 +1,115 @@
-'use client'
-import { useState } from 'react';
+"use client"
+import React, { useState, useEffect } from 'react';
+import CardMedicamentoBusca from '../component/cardBuscarMed';
 
-interface Medicamento {
-  id: number;
-  nome: string;
-  vencimento: string;
-  preco: number;
-  quantidade: number;
-  alergias: string[];
-  faixa_etaria: string;
-  mg_ml: string;
-  unidade: string;
-  farmacia_id: number;
-  similares: string[];
-  genericos: string[];
-  reabastecer: boolean;
-}
 
-export default function BuscarMedicamento({pagina}: any) {
-  const [nome, setNome] = useState('');
-  const [erro, setErro] = useState('');
-  const [medicamentos, setMedicamentos] = useState<Medicamento[]>([]);
 
-  const handleNomeChange = (e: any) => {
-    setNome(e.value);
-  };
+const BuscarMedicamento = () => {
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault(); // Evita o comportamento padrão de submissão do formulário
+  interface Medicamento {
+    id: number;
+    nome: string;
+    vencimento: string;
+    preco: number;
+    quantidade: number;
+    alergias: string[];
+    faixa_etaria: string;
+    mg_ml: string;
+    unidade: string;
+    farmacia_id: number;
+    similares: string[];
+    genericos: string[];
+    reabastecer: boolean;
+  }
+
+
+
+  const [loading, setLoading] = useState(false);
+  const [med, setMed] = useState<Medicamento[]>([]);
+  const [error, setError] = useState('');
+
+
+  const buscarMedicamento = async (busca_med: string) => {
+    
+    setLoading(true);
     try {
-      let response;
-      response = await fetch(`http://localhost:8000/medicamento?nome=${nome}`, {
+      
+      const response = await fetch(`http://localhost:8000/medicamento/?nome=${busca_med}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
       });
+      if (!response.ok) {
+        throw new Error('Erro ao buscar med. Por favor, tente novamente.');
+      }
 
       const data = await response.json();
-      setMedicamentos(data.Medicamentos); // Atualiza o estado dos medicamentos com os dados da resposta
-
+      //Pegou os dados
+      setMed(data.Medicamentos);
+      setError('');
     } catch (error) {
-      setErro('Erro ao buscar medicamentos. Por favor, tente novamente.');
+     
+      setError('Erro ao buscar med. Por favor, tente novamente.');
       console.error('Erro:', error);
-      setMedicamentos([]);
+      setMed([]);
+    
+    } finally {
+      setLoading(false);
     }
+    
   };
-  if(medicamentos){
-  return (
-    <div>
-      <h1>Buscar Medicamento</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Nome do Medicamento:
-          <input type="text" value={nome} onChange={handleNomeChange} />
-        </label>
-        <button type="submit">Buscar</button> {/* Botão de submit do formulário */}
-      </form>
-      {erro && <p>{erro}</p>}
-      {medicamentos.length > 0 && medicamentos ? (
+
+
+  useEffect(() => {
+    // Titulo padrão
+    document.title = "Nenhum medicamento encontrado";
+    
+    // cria um object de consulta da url local
+    const localurl = new URLSearchParams(window.location.search);
+    
+    // verifica se existe get em 'nome' na url local e pega o valor passado 
+    const busca = localurl.get("nome"); 
+    
+    // Se existe valor em get
+    if (busca) {
+      document.title = `Busca por ${busca}`;
+      buscarMedicamento(busca); //faça a busca
+    }
+  }, []); 
+      
+  
+  return (<>
+      {loading && <p>Carregando...</p>}
+      {error && <p>{error}</p>}
+      <div className='mt-4 mb-4 text-center'> 
+        <h4>Resultados:</h4>
+      </div>
+
+      {/* Se tem medicamentos */}
+      {med !== undefined && med.length > 0 ? (
         <div>
-          <h2>Medicamentos encontrados:</h2>
           <ul>
-            {medicamentos.map((medicamento) => (
-              <li key={medicamento.id}>
-                {medicamento.nome} - Preço: R${medicamento.preco}
+            {med.map((medicamento) => (   
+              <li key={medicamento.id} className='mt-2 mb-2 pt-2 pb-2'>
+                <CardMedicamentoBusca medicamento = {medicamento}/>
               </li>
             ))}
           </ul>
         </div>
       ) : (
-        <p>Nenhum medicamento encontrado.</p>
+        /* Se não tem medicamentos */
+        !loading && <div className="card mb-5">
+        <div className="row no-gutters">
+          <div className="card-body">
+            <h5 className="card-title text-center">Nenhum medicamento encontrado</h5>
+          </div>
+        </div>
+        </div>
       )}
-    </div>
-  );}
-  else {
-    return
-    {(pagina)};
-  }
+    </>
+  );
 }
+
+
+export default BuscarMedicamento;

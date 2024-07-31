@@ -42,7 +42,7 @@ export default function Footer() {
         </div>
 
         <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-          @Green-Farma Inc.<br />2023-2023
+          @Model-Farma Inc.<br />202x-202x
         </div>
       </footer>
       <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></Script>
