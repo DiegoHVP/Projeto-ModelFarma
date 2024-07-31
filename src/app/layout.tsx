@@ -6,8 +6,8 @@ interface RootLayoutProps {
 }
 
 export const metadata = {
-  title: 'Model-Farma',
-  description: 'Modelo de farmacia',
+  title: 'Green-Farma',
+  description: 'Qualidade e confianca é aqui',
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {

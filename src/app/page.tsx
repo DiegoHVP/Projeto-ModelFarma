@@ -1,11 +1,11 @@
+
 import CardGallery from "./component/galeria";
-
-
 
 export default function Home() {
   return (
     <>
       <section>
+        {/* SUGESTAO GALERIA INICIAL */}
         <div className='m-4 p-1'>
           <div className="row">
             <CardGallery
@@ -16,7 +16,7 @@ export default function Home() {
             <CardGallery
               title="Que desconto?"
               description="Com o cadastro da loja ganhe descontos exclusivos de até 20%"
-              link="./Account/login"
+              link="./Account"
             />
           </div>
         </div>
