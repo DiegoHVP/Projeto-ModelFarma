@@ -24,16 +24,12 @@ export default function DetailMed({ params }: { params: { id: string } }) {
   const [med, setMed] = useState<Medicamento>();
   const [pathID, setPathID] = useState("");
 
-
-  // SE TIVER PASSADO UM ID, ADD id EM pathID
   useEffect(() => {
     if (params && params.id) {
       setPathID(params.id);
     }
   }, [params]);
 
-
-  // BUSCA O MEDICAMENTO
   const buscaDetalhes = async (id: number) => {
     setLoading(true);
     console.log(id);
@@ -57,14 +53,12 @@ export default function DetailMed({ params }: { params: { id: string } }) {
     }
   };
 
-  // APOS CARREGAR A PAGINAS FAZ A BUSCA
   useEffect(() => {
     if (pathID) {
       buscaDetalhes(parseInt(pathID)); // Chamada da função aqui
     }
   }, [pathID]); // Dependência adicionada
 
-  // ENQUANTO ESTA BUSCANDO
   if (loading) {
     return (
       <div className="container my-5">
@@ -75,8 +69,6 @@ export default function DetailMed({ params }: { params: { id: string } }) {
     );
   }
 
-
-  //VERIFICA SE TEM MEDICAMENTO
   if (!med) {
     return (
       <div className="container my-5">
@@ -86,8 +78,8 @@ export default function DetailMed({ params }: { params: { id: string } }) {
       </div>
     );
   }
-  else {
-    return (
+
+  return (
     <div className="container my-5">
       <div className="card">
         <div className="card-body">
@@ -137,5 +129,4 @@ export default function DetailMed({ params }: { params: { id: string } }) {
       </div>
     </div>
   );
-}
 }
