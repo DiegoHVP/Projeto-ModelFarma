@@ -1,26 +1,31 @@
 "use client"
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import CardMedicamento from "../../../component/funcionario/card/page";
+import CardMedicamento from "../../../../../component/funcionario/card/page";
 
-interface Medicamento {
-  id: number;
-  nome: string;
-  vencimento: string;
-  preco: number;
-  quantidade: number;
-  alergias: string[];
-  faixa_etaria: string;
-  mg_ml: string;
-  unidade: string;
-  farmacia_id: number;
-  similares: string[];
-  genericos: string[];
-  reabastecer: boolean;
-}
+
 
 
 const gerenciar_med = () => {
+  interface Medicamento {
+    id: number;
+    nome: string;
+    vencimento: string;
+    preco: number;
+    quantidade: number;
+    alergias: string[];
+    faixa_etaria: string;
+    mg_ml: string;
+    unidade: string;
+    farmacia_id: number;
+    similares: string[];
+    genericos: string[];
+    reabastecer: boolean;
+  }
+
+
+
+
   const [loading, setLoading] = useState(false);
   const [med, setMed] = useState<Medicamento[]>([]);
   const [upLista, setUpLista] =  useState<boolean>(false);

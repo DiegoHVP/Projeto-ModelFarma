@@ -1,31 +1,10 @@
-"use client"
-
-
+"use client";
 import React, { useState } from "react";
 import Link from "next/link";
 
-interface Medicamento {
-  id: number;
-  nome: string;
-  vencimento: string;
-  preco: number;
-  quantidade: number;
-  alergias: string[];
-  faixa_etaria: string;
-  mg_ml: string;
-  unidade: string;
-  farmacia_id: number;
-  similares: string[];
-  genericos: string[];
-  reabastecer: boolean;
-}
+const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: any; setUpLista: (updated: boolean) => void }) => {
 
-interface Props {
-  medicamento: Medicamento;
-  setUpLista: (updated: boolean) => void;
-}
 
-export default function CardMedicamento({ medicamento, setUpLista }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -42,14 +21,14 @@ export default function CardMedicamento({ medicamento, setUpLista }: Props) {
             "Content-Type": "application/json"
           }
         });
-        setUpLista(true);
         if (!response.ok) {
           throw new Error("Erro ao excluir medicamento. Por favor, tente novamente.");
         }
-
+        setUpLista(true);
+        
       } catch (error) {
         setError("Erro ao excluir medicamento. Por favor, tente novamente.");
-        console.error("Erro:", error);
+        console.log("Erro:", error);
     
       } finally {
         setLoading(false);
@@ -61,16 +40,13 @@ export default function CardMedicamento({ medicamento, setUpLista }: Props) {
   return (
     <div className="card">
       <div className="row no-gutters">
-      <div className="col-md-4">
+        <div className="col-md-4">
           <div className="card-body">
-            
-              <h5 className="card-title">{medicamento.nome}</h5>
-            
+            <h5 className="card-title">{medicamento.nome}</h5>
             <p className="card-text">Preço: R${medicamento.preco}</p>
             <p className="card-text">Vencimento: {medicamento.vencimento}</p>
           </div>
         </div>
-        {/* Coluna para quantidade e unidades */}
         <div className="col-md-4 text-center">
           <div className="card-body">
             <p className="card-text">Faixa Etária: {medicamento.faixa_etaria}</p>
@@ -80,11 +56,10 @@ export default function CardMedicamento({ medicamento, setUpLista }: Props) {
         </div>
         <div className="col-md-4">
           <div className="card-body d-flex flex-column justify-content-between align-items-center">
-          <Link href={`/detailMed/${medicamento.id}`}>
-            <button className="btn btn-primary mb-2">Detalhes</button>
+            <Link href={`/detailMed/${medicamento.id}`}>
+              <button className="btn btn-primary mb-2">Detalhes</button>
             </Link>
             <button className="btn btn-warning mb-2">Editar</button>
-
             <button className="btn btn-danger" onClick={excluirMed} disabled={loading}>
               {loading ? "Excluindo..." : "Excluir"}
             </button>
@@ -94,3 +69,5 @@ export default function CardMedicamento({ medicamento, setUpLista }: Props) {
     </div>
   );
 }
+
+export default CardMedicamento;

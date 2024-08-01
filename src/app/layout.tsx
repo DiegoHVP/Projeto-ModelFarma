@@ -1,4 +1,4 @@
-import MainContainer from './component/mainContainer';
+import MainContainer from '../../component/mainContainer';
 import { ReactNode } from 'react';
 import style from './layout.module.css'
 interface RootLayoutProps {

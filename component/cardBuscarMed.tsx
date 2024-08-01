@@ -1,27 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 
-interface Medicamento {
-  id: number;
-  nome: string;
-  vencimento: string;
-  preco: number;
-  quantidade: number;
-  alergias: string[];
-  faixa_etaria: string;
-  mg_ml: string;
-  unidade: string;
-  farmacia_id: number;
-  similares: string[];
-  genericos: string[];
-  reabastecer: boolean;
-}
 
-interface Props {
-  medicamento: Medicamento;
-}
-
-export default function CardMedicamentoBusca({ medicamento }: Props) {
+export default function CardMedicamentoBusca({ medicamento} : {medicamento: any}) {
+  
+  
   return (
     <div className="card">
       <div className="row no-gutters">

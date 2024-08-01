@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import CardMedicamentoBusca from '../component/cardBuscarMed';
+import CardMedicamentoBusca from '../../../component/cardBuscarMed';
 
 
 
