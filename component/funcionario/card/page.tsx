@@ -41,7 +41,9 @@ const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: any; setUpL
     <div className="card">
       <div className="row no-gutters">
         <div className="col-md-4">
+        <div className="col-md-4">
           <div className="card-body">
+            <h5 className="card-title">{medicamento.nome}</h5>
             <h5 className="card-title">{medicamento.nome}</h5>
             <p className="card-text">Preço: R${medicamento.preco}</p>
             <p className="card-text">Vencimento: {medicamento.vencimento}</p>
@@ -56,6 +58,7 @@ const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: any; setUpL
         </div>
         <div className="col-md-4">
           <div className="card-body d-flex flex-column justify-content-between align-items-center">
+            
             <Link href={`/detailMed/${medicamento.id}`}>
               <button className="btn btn-primary mb-2">Detalhes</button>
             </Link>
@@ -67,7 +70,9 @@ const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: any; setUpL
         </div>
       </div>
     </div>
+    </div>
   );
 }
 
 export default CardMedicamento;
+
