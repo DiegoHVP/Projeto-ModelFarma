@@ -1,7 +1,10 @@
 "use client";
+import { generateStaticParams } from "./generateStaticParams";
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useRouter } from 'next/router';
 
+generateStaticParams
 
 export default function DetailMed({ params }: { params: { id: string } }) {
   interface Medicamento {
