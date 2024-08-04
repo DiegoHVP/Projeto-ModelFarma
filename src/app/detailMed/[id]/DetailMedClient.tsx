@@ -94,9 +94,10 @@ export default function DetailMedClient({ id }: { id: string }) {
                       {similar}
                     </li>
                   ))}
-
                 </ul>
-              ):(<h6>Nenhum similar encontrado</h6>)}
+              ) : (
+                <h6>Nenhum similar encontrado</h6>
+              )}
 
               <h3 className="card-subtitle mb-3 mt-4">Genéricos</h3>
               {med.genericos ? (
@@ -107,7 +108,9 @@ export default function DetailMedClient({ id }: { id: string }) {
                     </li>
                   ))}
                 </ul>
-              ): (<h6>Nenhum altenativa generica encontrada</h6>)}
+              ) : (
+                <h6>Nenhuma alternativa genérica encontrada</h6>
+              )}
 
               {med.reabastecer && (
                 <div className="alert alert-warning mt-4" role="alert">
@@ -118,6 +121,7 @@ export default function DetailMedClient({ id }: { id: string }) {
           </div>
         </div>
       </div>
-    </div>
-  );
-}
+      </div>
+    );
+  }
+
