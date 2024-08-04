@@ -73,7 +73,7 @@ const BuscarMedicamento = () => {
     
     // Se existe valor em get
     if (busca) {
-      document.title = `Busca por ${busca}`;
+      document.title = `Busca por ${busca}`; //atualiza titulo
       buscarMedicamento(busca); //faça a busca
     }
   }, []); 
