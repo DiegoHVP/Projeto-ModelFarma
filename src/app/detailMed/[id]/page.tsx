@@ -11,7 +11,7 @@ export const dynamic = 'force-static'
 const mockData = {
   Medicamento: {
     id: 1,
-    nome: "Paracetamol",
+    nome: "Medicamento teste",
     vencimento: "2025-12-31",
     preco: 19.99,
     quantidade: 100,
@@ -20,8 +20,8 @@ const mockData = {
     mg_ml: "500mg",
     unidade: "comprimido",
     farmacia_id: 1,
-    similares: 2,
-    genericos: 1,
+    similares: null,
+    genericos: null,
     reabastecer: false
   }
 };
@@ -41,8 +41,13 @@ export default function DetailMedPage({ params }: { params: { id: string } }) {
         setMed(medicamento);
       } catch (error) {
         console.error("Erro ao buscar dados da API, usando dados mock:", error);
-        setMed(mockData.Medicamento); // Usando dados mockados
-        setError(null); // Limpa o erro para exibir dados mockados
+        
+        // Se id == 1 exibir medicamento teste
+        if (parseInt(params.id) == 1){
+          setMed(mockData.Medicamento); // Usando dados mockados
+        }
+        else
+          setError(null); // Limpa o erro para exibir dados mockados
       } finally {
         setLoading(false);
       }
