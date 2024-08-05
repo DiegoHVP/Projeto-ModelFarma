@@ -34,23 +34,28 @@ const Account = () => {
         <form>
             
           <div className="mb-3">
-            <label htmlFor="email"className="form-label">Email</label>
-            <input type="email" id="email" className="form-control"
+            <label htmlFor="email"className="form-label" >Email</label>
+            <input type="email" id="email" className="form-control" placeholder="Ex: exemplo@email.com"
                 value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="form-label">Senha</label>
-            <input type="password" id="password" className="form-control"
+            <input type="password" id="password" className="form-control" placeholder="Digite sua senha"
               value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
             
           <div className="mb-3 form-check">
             <input type="checkbox" className="form-check-input" id="remember" />
             <label className="form-check-label" htmlFor="remember">Lembrar</label>
-            <Link href="/esqueceu-senha" className="ms-2">Esqueceu a senha?</Link>
+          </div>
+
+          <div className="mb-3 form-check">
+            <input type="checkbox" className="form-check-input" id="funcionario" />
+            <label className="form-check-label" htmlFor="funcionario">Funcionario?</label>
           </div>
             
           <button type="button" className="btn btn-primary d-block w-100 mb-3" onClick={handleLogin}>Login</button>
+            <Link href="/esqueceu-senha" className="ms-2 text-right">Esqueceu a senha?</Link>
         </form>
           
         <div className="text-center">

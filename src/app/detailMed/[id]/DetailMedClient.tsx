@@ -1,5 +1,6 @@
-"use client";
-import React, { useState, useEffect } from "react";
+// src/app/detailMed/[id]/DetailMedClient.tsx
+
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 interface Medicamento {
@@ -18,58 +19,11 @@ interface Medicamento {
   reabastecer: boolean;
 }
 
-export default function DetailMedClient({ id }: { id: string }) {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [med, setMed] = useState<Medicamento>();
+interface DetailMedClientProps {
+  med: Medicamento;
+}
 
-  useEffect(() => {
-    const buscaDetalhes = async (id: number) => {
-      setLoading(true);
-      try {
-        const response = await fetch(`http://localhost:8000/medicamento/${id}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Erro ao buscar medicamento. Por favor, tente novamente.");
-        }
-        const data = await response.json();
-        setMed(data.Medicamento);
-      } catch (error) {
-        console.error("Erro:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (id) {
-      buscaDetalhes(parseInt(id));
-    }
-  }, [id]);
-
-  if (loading) {
-    return (
-      <div className="container my-5">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Carregando...</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (!med) {
-    return (
-      <div className="container my-5">
-        <div className="alert alert-danger" role="alert">
-          Medicamento não encontrado.
-        </div>
-      </div>
-    );
-  }
-
+export default function DetailMedClient({ med }: DetailMedClientProps) {
   return (
     <div className="container my-5">
       <div className="card">
@@ -87,7 +41,7 @@ export default function DetailMedClient({ id }: { id: string }) {
             </div>
             <div className="col-md-6">
               <h3 className="card-subtitle mb-3">Similares</h3>
-              {med.similares ? (
+              {med.similares? (
                 <ul className="list-group">
                   {med.similares.map((similar, index) => (
                     <li key={index} className="list-group-item">
@@ -121,7 +75,6 @@ export default function DetailMedClient({ id }: { id: string }) {
           </div>
         </div>
       </div>
-      </div>
-    );
-  }
-
+    </div>
+  );
+}
