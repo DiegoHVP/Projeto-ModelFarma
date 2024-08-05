@@ -5,6 +5,8 @@ import { fetchMedicamento } from "@/app/detailMed/[id]/fetchMedicamento";
 import DetailMedClient from "@/app/detailMed/[id]/DetailMedClient";
 import { generateStaticParams } from "@/app/detailMed/[id]/generateStaticParams";
 
+
+export const dynamic = 'force-static'
 // Dados mock para desenvolvimento
 const mockData = {
   Medicamento: {
@@ -24,6 +26,7 @@ const mockData = {
   }
 };
 
+generateStaticParams;
 export default function DetailMedPage({ params }: { params: { id: string } }) {
   const [med, setMed] = useState<any | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
