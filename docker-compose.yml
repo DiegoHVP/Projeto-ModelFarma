@@ -6,6 +6,8 @@ services:
     container_name: Api-Farmacia
     ports:
       - "8000:8000"
+    networks:
+      - my-network
 
   nextjs:
     build: ./Projeto-ModelFarma
@@ -14,3 +16,9 @@ services:
       - "3000:3000"
     depends_on:
       - fastapi
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
