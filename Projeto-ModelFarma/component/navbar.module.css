@@ -1,0 +1,33 @@
+.item:hover {
+    color: white !important;
+    background-color: rgb(0, 255, 0);
+    border-radius: 15px;
+}
+
+.r_text:hover {
+    text-emphasis-style: italic;
+
+}
+
+.user_sair {
+    text-align: justify;
+    border: 2px black;
+}
+
+.sair {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    border-radius: 15px;
+}
+
+.sair:hover {
+    background-color: #ff3333 !important;
+    border: 2px black;
+    color: aliceblue !important;
+}
+
+.cesta {
+    vertical-align: middle;
+    display: table-cell
+}
