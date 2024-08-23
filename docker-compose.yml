@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  fastapi:
+    build: ./Api-Farmacia
+    container_name: Api-Farmacia
+    ports:
+      - "8000:8000"
+
+  nextjs:
+    build: ./Projeto-ModelFarma
+    container_name: Projeto-ModelFarma
+    ports:
+      - "3000:3000"
+    depends_on:
+      - fastapi
