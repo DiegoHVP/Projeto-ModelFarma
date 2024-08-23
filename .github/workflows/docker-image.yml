@@ -22,15 +22,18 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build and push FastAPI image
-      run: |
-        docker build ./Api-Farmacia -t ${{ secrets.DOCKER_USERNAME }}/api-farmacia:latest
-        docker push ${{ secrets.DOCKER_USERNAME }}/api-farmacia:latest
+   # - name: Build and push FastAPI image
+   #   run: |
+   #     docker build ./Api-Farmacia -t ${{ secrets.DOCKER_USERNAME }}/api-farmacia:latest
+   #     docker push ${{ secrets.DOCKER_USERNAME }}/api-farmacia:latest
 
-    - name: Build and push Next.js image
-      run: |
-        docker build ./Projeto-ModelFarma -t ${{ secrets.DOCKER_USERNAME }}/projeto-modelfarma:latest
-        docker push ${{ secrets.DOCKER_USERNAME }}/projeto-modelfarma:latest
+   # - name: Build and push Next.js image
+   #   run: |
+    #    docker build ./Projeto-ModelFarma -t ${{ secrets.DOCKER_USERNAME }}/projeto-modelfarma:latest
+    #    docker push ${{ secrets.DOCKER_USERNAME }}/projeto-modelfarma:latest
+
+    - name: List files in workspace
+      run: ls -la
 
     - name: Install Docker Compose
       run: |
