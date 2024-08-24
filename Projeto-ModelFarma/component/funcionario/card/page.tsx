@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-
+import { getApiUrl } from "../../getApiUrl";
 const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: any; setUpLista: (updated: boolean) => void }) => {
 
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const apiUrl = getApiUrl();
   const excluirMed = async () => {
     const confirmacao = window.confirm("Tem certeza que deseja excluir este medicamento?");
     
@@ -15,7 +15,7 @@ const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: any; setUpL
       setLoading(true);
       
       try {
-        const response = await fetch(`http://localhost:8000/medicamento/${medicamento.id}`, {
+        const response = await fetch(`${apiUrl}/medicamento/${medicamento.id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json"

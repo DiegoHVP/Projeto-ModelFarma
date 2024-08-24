@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { fetchMedicamento } from '../fetchMedicamento'; // Importando o hook fetchMedicamento
 import { Medicamento } from '../../../../types/Medicamentos';
+import { getApiUrl } from '../../../../component/getApiUrl';
 
 
 const Pagamento = () => {
@@ -11,13 +12,14 @@ const Pagamento = () => {
   const [medicamentosComprados, setMedicamentosComprados] = useState<Medicamento[]>([]);
   const [mensagem, setMensagem] = useState<string>('');
   const [precoTotal, setPrecoTotal] = useState<number>(0);
+  const apiUrl = getApiUrl();
 
   useEffect(() => {
     const fetchCliente = async () => {
       const token = Cookies.get('token');
       if (token) {
         try {
-          const response = await fetch('http://localhost:8000/cliente/me/', {
+          const response = await fetch(`${apiUrl}/cliente/me/`, {
             method: 'GET',
             headers: {
               'Authorization': `Bearer ${token}`,
@@ -80,7 +82,7 @@ const Pagamento = () => {
     const quantidade = medicamentosComprados.map((med) => med.quantidade);
 
     try {
-      const response = await fetch('http://localhost:8000/compra/', {
+      const response = await fetch(`${apiUrl}/compra/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

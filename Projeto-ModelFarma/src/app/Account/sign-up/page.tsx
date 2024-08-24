@@ -1,9 +1,11 @@
 "use client"
 import React, { useState,useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
+import { getApiUrl } from "../../../../component/getApiUrl";
 
 
 const SignUp = () => {
+  const apiUrl = getApiUrl();
   const [formData, setFormData] = useState({
     nome: "",
     sobrenome: "",
@@ -14,6 +16,7 @@ const SignUp = () => {
     senha: "",
     repetirSenha: ""
   });
+
 
   const pegarDados = (e: any) => {
     const { name, value } = e.target;
@@ -30,7 +33,7 @@ const SignUp = () => {
     }
     try {
       // Enviar os dados para a API
-      const response = await fetch("http://localhost:8000/cliente", {
+      const response = await fetch(`${apiUrl}/cliente`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

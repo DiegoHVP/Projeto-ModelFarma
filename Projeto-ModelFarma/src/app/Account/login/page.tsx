@@ -4,6 +4,7 @@ import Link from"next/link";
 import"bootstrap/dist/css/bootstrap.min.css";
 import Head from'next/head';
 import Cookies from 'js-cookie';
+import { getApiUrl } from '../../../../component/getApiUrl';
 
 
 const Account = () => {
@@ -11,6 +12,8 @@ const Account = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isClient, setIsClient] = useState(true); // Controle de tipo de usuário
+  const apiUrl = getApiUrl();
+
   useEffect(() => {
     document.title = "Login";
   }, []);
@@ -19,7 +22,7 @@ const Account = () => {
   const handleLogin = async () => {
     try {
       // BUSQUE
-      const endpoint = isClient ? 'http://localhost:8000/cliente/token' : 'http://localhost:8000/farmaceutico/token/';
+      const endpoint = isClient ? `${apiUrl}/cliente/token` : `${apiUrl}/farmaceutico/token/`;
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {

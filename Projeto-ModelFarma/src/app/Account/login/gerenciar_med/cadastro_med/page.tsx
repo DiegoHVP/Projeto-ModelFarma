@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Medicamento } from "../../../../../../types/Medicamentos";
+import { getApiUrl } from "../../../../../../component/getApiUrl";
 
 const CadastroMed = () => {
   const [Med, setMed] = useState<Medicamento>({
@@ -10,7 +11,7 @@ const CadastroMed = () => {
   });
 
   const [OK, setOK] = useState<boolean>(false);
-
+  const apiUrl = getApiUrl();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
 
@@ -37,7 +38,7 @@ const CadastroMed = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/medicamento/", {
+      const response = await fetch(`${apiUrl}/medicamento/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -13,7 +13,7 @@ COPY . .
 
 # Compila o projeto Next.js
 RUN npm run build
-
+ENV NEXT_API_URL = https://projeto-modelfarma.onrender.com/
 # Expõe a porta em que o Next.js vai rodar
 EXPOSE 3000
 

@@ -1,16 +1,17 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { Cliente } from '../../../../../types/Cliente';
+import { getApiUrl } from '../../../../../component/getApiUrl';
 
 
 const ListarClientes = () => {
   const [clientes, setClientes] = useState<Cliente[]>([]);
   const [message, setMessage] = useState('');
   const [upLista, setUpLista] = useState<boolean>(false);
-
+  const apiUrl = getApiUrl();
   const buscarClientes = async () => {
     try {
-      const response = await fetch('http://localhost:8000/cliente/');
+      const response = await fetch(`${apiUrl}/cliente/`);
 
       if (response.ok) {
         const data = await response.json();
@@ -47,7 +48,7 @@ const ListarClientes = () => {
 
     if (confirmacao) {
       try {
-        const response = await fetch(`http://localhost:8000/cliente/${id}`, {
+        const response = await fetch(`${apiUrl}/cliente/${id}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',

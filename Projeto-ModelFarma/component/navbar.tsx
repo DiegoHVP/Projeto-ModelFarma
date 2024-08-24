@@ -8,11 +8,13 @@ import BuscarMed from './buscarMed';
 import login_SVG from './svgs/login.svg';
 import bag_SVG from './svgs/bag.svg';
 import Cookies from 'js-cookie';
+import { getApiUrl } from './getApiUrl';
 
 const Navigation = () => {
   const [userName, setUserName] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const apiUrl = getApiUrl();
+  
   useEffect(() => {
     const fetchUser = async () => {
       //SE NAO TEM TOKEN
@@ -22,8 +24,8 @@ const Navigation = () => {
         return;
       }
 
-      const isClient = 'http://localhost:8000/cliente/me/';
-      const isFarmaceutico = 'http://localhost:8000/farmaceutico/me/';
+      const isClient = `${apiUrl}/cliente/me/`;
+      const isFarmaceutico = `${apiUrl}/farmaceutico/me/`;
 
       // PROCURE NOME
       try {

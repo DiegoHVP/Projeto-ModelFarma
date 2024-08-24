@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
+import { getApiUrl } from "../../../../component/getApiUrl";
 
 export function useMedicamento(id: number) {
   const [med, setMed] = useState<any | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-
+  const apiUrl = getApiUrl();
   useEffect(() => {
     async function fetchMedicamento() {
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:8000/medicamento/${id}`, {
+        const response = await fetch(`${apiUrl}/medicamento/${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

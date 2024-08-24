@@ -1,6 +1,8 @@
+import { getApiUrl } from "../../../component/getApiUrl";
 export async function fetchMedicamento(id: number) {
-    try {
-      const response = await fetch(`http://localhost:8000/medicamento/${id}`, {
+  const apiUrl = getApiUrl();  
+  try {
+      const response = await fetch(`${apiUrl}/medicamento/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import CardMedicamento from "../../../../../component/funcionario/card/page";
 import Cookies from 'js-cookie';
 import { Medicamento } from "../../../../../types/Medicamentos";
+import { getApiUrl } from "../../../../../component/getApiUrl";
 
 
 const GerenciarMed = () => {
@@ -13,7 +14,7 @@ const GerenciarMed = () => {
   const [med, setMed] = useState<Medicamento[]>([]);
   const [upLista, setUpLista] = useState<boolean>(true);
   const [authorized, setAuthorized] = useState<boolean>(false);
-
+  const apiUrl = getApiUrl();
 
   // Função para verificar a autenticação
   const checkAuth = async () => {
@@ -26,7 +27,7 @@ const GerenciarMed = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/farmaceutico/me/', {
+      const response = await fetch(`${apiUrl}/farmaceutico/me/`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -55,7 +56,7 @@ const GerenciarMed = () => {
   const ListarMedicamentos = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8000/medicamento/`);
+      const response = await fetch(`${apiUrl}/medicamento/`);
 
       if (!response.ok) {
         throw new Error('Erro ao buscar os dados');

@@ -1,15 +1,18 @@
 import { useState, useEffect } from'react';
 import { Medicamento } from '../../../types/Medicamentos';
+import { getApiUrl } from '../../../component/getApiUrl';
+
 
 export const useBuscarMedicamento = () => {
   const [loading, setLoading] = useState(false);
   const [med, setMed] = useState<Medicamento[]>([]);
   const [error, setError] = useState('');
+  const apiUrl = getApiUrl();
 
   const buscarMedicamento = async (busca_med: string) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8000/medicamento/?nome=${busca_med}`, {
+      const response = await fetch(`${apiUrl}/medicamento/?nome=${busca_med}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
