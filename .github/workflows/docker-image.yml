@@ -32,6 +32,13 @@ jobs:
         docker build ./Projeto-ModelFarma -t ${{ secrets.DOCKER_USERNAME }}/projeto-modelfarma:latest
         docker push ${{ secrets.DOCKER_USERNAME }}/projeto-modelfarma:latest
 
+
+
+    - name: Install Docker Compose
+      run: |
+        sudo apt-get update
+        sudo apt-get install docker-compose -y
+
     - name: Deploy with Docker Compose
       run: |
-        docker-compose -f .docker-compose.yml up -d
+        docker-compose -f docker-compose.yml up -d
