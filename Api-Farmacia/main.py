@@ -2,18 +2,18 @@ from fastapi import FastAPI
 from endpoints import farmaceutico, medicamento, fornecedor, cliente, farmacia, compra
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
-import os
+#import os
 
 
-api_url = os.getenv('NEXT_PUBLIC_API_URL')
+#api_url = os.getenv('NEXT_PUBLIC_API_URL')
 
-app = FastAPI()
+#app = FastAPI()
 
 # Configurar as origens permitidas
 origins = [
     "http://localhost",
     "http://localhost:3000",
-    api_url, # APENAS PARA TESTES
+    'https://projeto-modelfarma.onrender.com', # APENAS PARA TESTES
 ]
 
 # Adicionar middleware CORS à aplicação
