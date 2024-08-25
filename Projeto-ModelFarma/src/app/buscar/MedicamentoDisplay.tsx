@@ -18,7 +18,7 @@ const MedicamentoDisplay: React.FC<Props> = ({ medicamentos, loading, error }) =
       {medicamentos !== undefined? (
         <ul>
           {medicamentos.map((medicamento) => (
-            <li key={medicamento.id}className='mt-2 mb-2 pt-2 pb-2'><CardMedicamentoBusca medicamento={medicamento} /></li>
+            <li key={medicamento.id} className='mt-2 mb-2 pt-2 pb-2 list-unstyled '><CardMedicamentoBusca medicamento={medicamento} /></li>
           ))}
         </ul>
       ) : (

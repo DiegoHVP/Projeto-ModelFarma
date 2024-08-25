@@ -75,6 +75,7 @@ async def get_medicamento(id: int):
         return {"error": str(e)}
 
 # GET Todos os Medicamentos
+# Se tive nome busca por medicamentos especificos
 @router.get("/medicamento/")
 async def get_all_medicamento(nome: Optional[str] = None):
     try:

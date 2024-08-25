@@ -8,9 +8,6 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install
 
-# Define a variável de ambiente NEXT_API_URL antes do build
-ENV NEXT_PUBLIC_API_URL=https://projeto-modelfarma.onrender.com
-
 # Copia o restante do código
 COPY . .
 

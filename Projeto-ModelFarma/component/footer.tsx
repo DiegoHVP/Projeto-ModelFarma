@@ -10,10 +10,10 @@ import Twitter from "./svgs/twitter-x.svg";
 
 export default function Footer() {
 
-  const SVG_Facebook = "https://facebook.com/Greenfarma"
-  const SVG_Instagram = "https://instagram.com/Greenfarma"
+  const SVG_Facebook = "https://facebook.com/"
+  const SVG_Instagram = "https://instagram.com/"
   const SVG_Github = "https://github.com/DiegoHVP"
-  const SVG_Twitter = "https://x.com/Greenfarma"
+  const SVG_Twitter = "https://x.com/"
 
 
 

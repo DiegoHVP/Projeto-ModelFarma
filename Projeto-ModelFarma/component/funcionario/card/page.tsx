@@ -2,12 +2,13 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { getApiUrl } from "../../getApiUrl";
-const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: any; setUpLista: (updated: boolean) => void }) => {
+import { Medicamento } from "../../../types/Medicamentos";
 
-
+const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: Medicamento; setUpLista: (updated: boolean) => void }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const apiUrl = getApiUrl();
+
   const excluirMed = async () => {
     const confirmacao = window.confirm("Tem certeza que deseja excluir este medicamento?");
     
@@ -33,26 +34,26 @@ const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: any; setUpL
       } finally {
         setLoading(false);
       }
-    
     }
   };
 
   return (
-    <div className="card">
+    <div className="card mx-auto" style={{maxWidth: 1100}}>
       <div className="row no-gutters">
         <div className="col-md-4">
           <div className="card-body">
             <h5 className="card-title">{medicamento.nome}</h5>
-            <p className="card-text">Preço: R${medicamento.preco}</p>
-            <p className="card-text">Vencimento: {medicamento.vencimento}</p>
+            <p className="card-text">Preço: R${medicamento.preco.toFixed(2)}</p>
+            {medicamento.vencimento && <p className="card-text">Vencimento: {medicamento.vencimento}</p>}
+            {medicamento.quantidade !== undefined && <p className="card-text">Quantidade em estoque: {medicamento.quantidade}</p>}
           </div>
         </div>
         
         <div className="col-md-4 text-center">
           <div className="card-body">
-            <p className="card-text">Faixa Etária: {medicamento.faixa_etaria}</p>
-            <p className="card-text">Unidade (por caixa): {medicamento.unidade}</p>
-            <p className="card-text">mg/ml: {medicamento.mg_ml}</p>
+            {medicamento.faixa_etaria && <p className="card-text">Faixa Etária: {medicamento.faixa_etaria}</p>}
+            {medicamento.unidade !== undefined && <p className="card-text">Unidade (por caixa): {medicamento.unidade}</p>}
+            {medicamento.mg_ml && <p className="card-text">mg/ml: {medicamento.mg_ml}</p>}
           </div>
         </div>
 
@@ -73,4 +74,3 @@ const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: any; setUpL
 }
 
 export default CardMedicamento;
-

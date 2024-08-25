@@ -113,7 +113,7 @@ const GerenciarMed = () => {
         <div>
           <ul>
             {med.map((medicamento) => (
-              <li key={medicamento.id} className="m-2 p-2">
+              <li key={medicamento.id} className="m-2 p-2 list-unstyled">
                 <CardMedicamento medicamento={medicamento} setUpLista={setUpLista} />
               </li>
             ))}

@@ -59,7 +59,7 @@ export default function CardMedicamentoBusca({ medicamento }: Props) {
   };
 
   return (
-    <div className="card">
+    <div className="card mx-auto" style={{maxWidth: 1100}}>
       <div className="row no-gutters">
         {/* Coluna para o nome e informações gerais */}
         <div className="col-md-4">
