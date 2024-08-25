@@ -7,7 +7,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 #api_url = os.getenv('NEXT_PUBLIC_API_URL')
 
-#app = FastAPI()
+app = FastAPI()
 
 # Configurar as origens permitidas
 origins = [
