@@ -13,11 +13,11 @@ RUN npm install
 COPY . .
 
 # Compila o projeto Next.js
+ENV NEXT_PUBLIC_API_URL=https://projeto-modelfarma.onrender.com
 RUN npm run build
 
 EXPOSE 3000
 
-ENV NEXT_PUBLIC_API_URL=https://projeto-modelfarma.onrender.com
 
 # Comando para iniciar a aplicação Next.js
 CMD ["npm", "run", "start"]
