@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { fetchMedicamento } from '../fetchMedicamento'; // Importando o hook fetchMedicamento
 import { Medicamento } from '../../../../types/Medicamentos';
-import { getApiUrl } from '../../../../component/getApiUrl';
+import { getApiUrl } from '../../../component/getApiUrl';
 
 const Pagamento = () => {
   const [cliente, setCliente] = useState<any>(null);

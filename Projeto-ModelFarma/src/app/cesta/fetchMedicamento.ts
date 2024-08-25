@@ -1,4 +1,4 @@
-import { getApiUrl } from "../../../component/getApiUrl";
+import { getApiUrl } from "../../component/getApiUrl";
 export async function fetchMedicamento(id: number) {
   const apiUrl = getApiUrl();  
   try {

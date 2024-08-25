@@ -5,7 +5,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 import os
 
 
-api_url = os.getenv('NEXT_PUBLIC_API_URL')
+#api_url = os.getenv('NEXT_PUBLIC_API_URL')
 
 app = FastAPI()
 

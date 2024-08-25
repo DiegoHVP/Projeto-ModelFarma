@@ -1,6 +1,6 @@
 import React from'react';
 import { Medicamento } from '../../../types/Medicamentos';
-import CardMedicamentoBusca from './../../../component/cardBuscarMed';
+import CardMedicamentoBusca from '../../component/cardBuscarMed';
 
 interface Props {
   medicamentos: Medicamento[];

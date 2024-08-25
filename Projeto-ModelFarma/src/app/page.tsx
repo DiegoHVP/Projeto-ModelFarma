@@ -1,4 +1,4 @@
-import CardGallery from "../../component/galeria";
+import CardGallery from "../component/galeria";
 
 
 

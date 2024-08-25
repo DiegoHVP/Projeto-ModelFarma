@@ -1,7 +1,7 @@
 "use client"
 import React, { useState,useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { getApiUrl } from "../../../../component/getApiUrl";
+import { getApiUrl } from "../../../component/getApiUrl";
 
 
 const SignUp = () => {

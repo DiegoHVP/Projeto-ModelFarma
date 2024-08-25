@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getApiUrl } from "../../../../component/getApiUrl";
+import { getApiUrl } from "../../../component/getApiUrl";
 
 export function useMedicamento(id: number) {
   const [med, setMed] = useState<any | null>(null);

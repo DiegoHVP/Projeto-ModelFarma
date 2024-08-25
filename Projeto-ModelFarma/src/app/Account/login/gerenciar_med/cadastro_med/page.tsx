@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Medicamento } from "../../../../../../types/Medicamentos";
-import { getApiUrl } from "../../../../../../component/getApiUrl";
+import { getApiUrl } from "../../../../../component/getApiUrl";
 
 const CadastroMed = () => {
   const [Med, setMed] = useState<Medicamento>({

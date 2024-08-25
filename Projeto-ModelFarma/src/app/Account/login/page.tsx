@@ -4,7 +4,7 @@ import Link from"next/link";
 import"bootstrap/dist/css/bootstrap.min.css";
 import Head from'next/head';
 import Cookies from 'js-cookie';
-import { getApiUrl } from '../../../../component/getApiUrl';
+import { getApiUrl } from '../../../component/getApiUrl';
 
 
 const Account = () => {

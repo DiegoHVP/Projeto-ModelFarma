@@ -1,6 +1,6 @@
 import { useState, useEffect } from'react';
 import { Medicamento } from '../../../types/Medicamentos';
-import { getApiUrl } from '../../../component/getApiUrl';
+import { getApiUrl } from '../../component/getApiUrl';
 
 
 export const useBuscarMedicamento = () => {

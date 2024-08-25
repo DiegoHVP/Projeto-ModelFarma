@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import CardMedicamento from "../../../../../component/funcionario/card/page";
+import CardMedicamento from "../../../../component/funcionario/card/page";
 import Cookies from 'js-cookie';
 import { Medicamento } from "../../../../../types/Medicamentos";
-import { getApiUrl } from "../../../../../component/getApiUrl";
+import { getApiUrl } from "../../../../component/getApiUrl";
 
 
 const GerenciarMed = () => {

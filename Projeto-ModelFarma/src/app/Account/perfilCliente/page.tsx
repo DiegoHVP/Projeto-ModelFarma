@@ -4,7 +4,7 @@ import DisplayDetalhesCliente from "./DisplayDetalhesCliente";
 import CompraCard from "./compraCard";
 import { Cliente } from "../../../../types/Cliente"; // Caminho para a interface Cliente
 import Cookies from 'js-cookie';
-import { getApiUrl } from "../../../../component/getApiUrl";
+import { getApiUrl } from "../../../component/getApiUrl";
 
 const Page = () => {
   const [cliente, setCliente] = useState<Cliente | null>(null);

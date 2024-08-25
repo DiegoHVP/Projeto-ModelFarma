@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { getApiUrl } from "../../getApiUrl";
-import { Medicamento } from "../../../types/Medicamentos";
+import { Medicamento } from "../../../../types/Medicamentos";
 
 const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: Medicamento; setUpLista: (updated: boolean) => void }) => {
   const [loading, setLoading] = useState(false);

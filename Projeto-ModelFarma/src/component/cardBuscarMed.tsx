@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
-import { Medicamento } from '../types/Medicamentos';
+import { Medicamento } from '../../types/Medicamentos';
 
 interface Props {
   medicamento: Medicamento; 
