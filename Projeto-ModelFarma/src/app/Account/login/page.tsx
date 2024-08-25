@@ -68,9 +68,9 @@ const Account = () => {
             {error && <div className="text-center alert alert-danger mb-3">{error}</div>}
             <form>
               <div className="mb-3">
-                <label htmlFor="email" className="form-label">Email</label><input
-                  type="email"
-                  id="email"
+                <label htmlFor="email" className="form-label">CPF</label><input
+                  type="cpf"
+                  id="cpf"
                   className="form-control"
                   placeholder="Insira o CPF"
                   value={cpf}

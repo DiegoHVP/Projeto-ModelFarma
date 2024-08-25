@@ -10,7 +10,7 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:3000",
-    "https://projetosite-modelfarma.onrender.com",
+    "https://projetosite-modelfarma.onrender.com", # APENAS PARA TESTES
 ]
 
 # Adicionar middleware CORS à aplicação
