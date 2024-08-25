@@ -10,7 +10,8 @@ interface DetailMedClientProps {
 }
 
 export default function DetailMedClient({ med }: DetailMedClientProps) {
-  const apiUrl = 'https://projetosite-modelfarma.onrender.com';
+  const atualLink = window.location.href.split('/').slice(0, -1).join('/') + '/';
+
   useEffect( () => {
     document.title = `Medicamento: ${med.nome}` 
   })
@@ -40,7 +41,7 @@ export default function DetailMedClient({ med }: DetailMedClientProps) {
                     const { med: similarMed } = useMedicamento(Number(indexSimilar));
                     return similarMed ? (
                       <li key={indexSimilar} className="list-group-item">
-                        <Link href={`${apiUrl}/detailMed/${indexSimilar}`}>
+                        <Link href={`${atualLink}${indexSimilar}`}>
                           {similarMed.nome}
                         </Link>
                       </li>
@@ -59,7 +60,7 @@ export default function DetailMedClient({ med }: DetailMedClientProps) {
                     const { med: genericoMed } = useMedicamento(Number(indexGenerico));
                     return genericoMed ? (
                       <li key={indexGenerico} className="list-group-item">
-                        <Link href={`${apiUrl}/detailMed/${indexGenerico}`}>
+                        <Link href={`${atualLink}${indexGenerico}`}>
                           {genericoMed.nome}
                         </Link>
                       </li>
