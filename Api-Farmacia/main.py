@@ -6,7 +6,7 @@ import os
 
 
 api_url = os.getenv('NEXT_PUBLIC_API_URL')
-
+print(api_url)
 app = FastAPI()
 
 # Configurar as origens permitidas
