@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useMedicamento } from "./useMedicamento";
 import Link from 'next/link';
 import { Medicamento } from "../../../../types/Medicamentos";
+import { getApiUrl } from "../../../../component/getApiUrl";
 
 
 interface DetailMedClientProps {
@@ -10,6 +11,7 @@ interface DetailMedClientProps {
 }
 
 export default function DetailMedClient({ med }: DetailMedClientProps) {
+  const apiUrl = getApiUrl();
   useEffect( () => {
     document.title = `Medicamento: ${med.nome}` 
   })
@@ -39,7 +41,7 @@ export default function DetailMedClient({ med }: DetailMedClientProps) {
                     const { med: similarMed } = useMedicamento(Number(indexSimilar));
                     return similarMed ? (
                       <li key={indexSimilar} className="list-group-item">
-                        <Link href={`http://localhost:3000/detailMed/${indexSimilar}`}>
+                        <Link href={`${apiUrl}/detailMed/${indexSimilar}`}>
                           {similarMed.nome}
                         </Link>
                       </li>
@@ -58,7 +60,7 @@ export default function DetailMedClient({ med }: DetailMedClientProps) {
                     const { med: genericoMed } = useMedicamento(Number(indexGenerico));
                     return genericoMed ? (
                       <li key={indexGenerico} className="list-group-item">
-                        <Link href={`http://localhost:3000/detailMed/${indexGenerico}`}>
+                        <Link href={`${apiUrl}/detailMed/${indexGenerico}`}>
                           {genericoMed.nome}
                         </Link>
                       </li>

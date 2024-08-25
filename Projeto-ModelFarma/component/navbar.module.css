@@ -6,12 +6,11 @@
 
 .r_text:hover {
     text-emphasis-style: italic;
-
 }
 
 .user_sair {
     text-align: justify;
-    border: 2px black;
+    border: 2px solid black;
 }
 
 .sair {
@@ -23,17 +22,32 @@
 
 .sair:hover {
     background-color: #ff3333 !important;
-    border: 2px black;
+    border: 2px solid black;
     color: aliceblue !important;
 }
 
 .cesta {
     vertical-align: middle;
-    display: table-cell
+    display: table-cell;
 }
 
 .normalLink {
     color: inherit; /* Usa a cor do texto normal */
     text-decoration: none; /* Remove o sublinhado padrão */
-  }
-  
+}
+
+/* Estilos para mobile */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        text-align: center;
+    }
+
+    .item, .user_sair, .cesta {
+        margin-bottom: 15px; /* Adiciona espaço entre os itens no mobile */
+    }
+
+    .navbar-brand {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
