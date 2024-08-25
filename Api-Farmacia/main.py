@@ -14,7 +14,7 @@ origins = [
     "http://localhost",
     "http://localhost:3000",
     #api_url, # APENAS PARA TESTES
-    'https://projeto-modelfarma.onrender.com'
+    'https://projetosite-modelfarma.onrender.com'
 ]
 
 # Adicionar middleware CORS à aplicação
