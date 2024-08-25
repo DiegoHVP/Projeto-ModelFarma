@@ -11,6 +11,7 @@ export const useBuscarMedicamento = () => {
 
   const buscarMedicamento = async (busca_med: string) => {
     setLoading(true);
+    console.log(`${apiUrl}/medicamento/?nome=${busca_med}`)
     try {
       const response = await fetch(`${apiUrl}/medicamento/?nome=${busca_med}`, {
         method: 'GET',
