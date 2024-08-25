@@ -1,13 +1,11 @@
-'use client'
+'use client';
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { fetchMedicamento } from '../fetchMedicamento'; // Importando o hook fetchMedicamento
 import { Medicamento } from '../../../../types/Medicamentos';
 import { getApiUrl } from '../../../../component/getApiUrl';
 
-
 const Pagamento = () => {
-  
   const [cliente, setCliente] = useState<any>(null);
   const [medicamentosComprados, setMedicamentosComprados] = useState<Medicamento[]>([]);
   const [mensagem, setMensagem] = useState<string>('');
@@ -29,6 +27,7 @@ const Pagamento = () => {
             const data = await response.json();
             setCliente(data);
           } else {
+            setCliente(null);
             alert('Erro ao obter informações do usuário.');
           }
         } catch (error) {
@@ -41,7 +40,7 @@ const Pagamento = () => {
     };
 
     fetchCliente();
-  }, []);
+  }, [apiUrl]);
 
   useEffect(() => {
     const fetchMedicamentos = async () => {
@@ -75,11 +74,20 @@ const Pagamento = () => {
     };
 
     fetchMedicamentos();
-  }, []);
+  }, [apiUrl]);
 
   const confirmarPagamento = async () => {
     const medicamento_ids = medicamentosComprados.map((med) => med.id);
     const quantidade = medicamentosComprados.map((med) => med.quantidade);
+
+    const body: any = {
+      medicamento_ids,
+      quantidade,
+    };
+
+    if (cliente) {
+      body.cliente_id = cliente.id; 
+    }
 
     try {
       const response = await fetch(`${apiUrl}/compra/`, {
@@ -87,17 +95,13 @@ const Pagamento = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          cliente_id: cliente.id,
-          medicamento_ids,
-          quantidade,
-        }),
+        body: JSON.stringify(body),
       });
 
       if (response.ok) {
-        alert("Pagemento Conluido com sucesso!");
+        alert("Pagamento concluído com sucesso!");
         Cookies.remove('cesta'); // Limpa a cesta de compras
-        window.location.href = "/"
+        window.location.href = "/";
         return;
       } else {
         setMensagem('Erro ao processar o pagamento.');
@@ -109,7 +113,7 @@ const Pagamento = () => {
   };
 
   return (
-    <div className="container mt-5 pr-4 pl-4 mx-auto mb-3" style={{ maxWidth: '700px'}}>
+    <div className="container mt-5 pr-4 pl-4 mx-auto mb-3" style={{ maxWidth: '700px' }}>
       <div className="card pr-4 pl-4">
         <div className="card-header">
           <h2>Confirmar Pagamento</h2>

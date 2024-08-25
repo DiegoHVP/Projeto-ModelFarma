@@ -6,32 +6,34 @@ import { Cliente } from "../../../../types/Cliente";
 interface DetailClienteProps {
   cliente: Cliente;
 }
+
 const DisplayDetalhesCliente = ({ cliente }: DetailClienteProps) => {
- 
-    useEffect(() => {
-      document.title = `Cliente: ${cliente.nome} ${cliente.sobrenome}`;
-    }, [cliente]);
+  
+  useEffect(() => {
+    document.title = `Cliente: ${cliente.nome} ${cliente.sobrenome}`;
+  }, [cliente]);
 
   return (
-    <div className="container my-5">
-      <div className="card">
+    <div className="container my-4">
+      <div className="card" style={{ maxWidth: '800px', margin: 'auto' }}>
         <div className="card-body">
-          <h2 className="card-title">{cliente.nome} {cliente.sobrenome}</h2>
+          <h2 className="card-title mb-4">{cliente.nome} {cliente.sobrenome}</h2>
           <div className="row">
-            <div className="col-md-6">
-              <p className="card-text">CPF: {cliente.cpf}</p>
-              <p className="card-text">Telefone: {cliente.telefone}</p>
-              <p className="card-text">Email: {cliente.email}</p>
-              <p className="card-text">Alergias: {cliente.alergias || "Nenhuma alergia registrada"}</p>
-              <p className="card-text">Farmácia Cadastrada: {cliente.cadastro_farmacia}</p>
-              <p className="card-text">Forma de Pagamento: {cliente.forma_pagamento}</p>
+            <div className="col-md-6 mb-3">
+              <p><strong>CPF:</strong> {cliente.cpf}</p>
+              <p><strong>Telefone:</strong> {cliente.telefone}</p>
+              <p><strong>Email:</strong> {cliente.email}</p>
+            </div>
+            <div className="col-md-6 mb-3">
+              <p><strong>Alergias:</strong> {cliente.alergias || "Nenhuma alergia registrada"}</p>
+              <p><strong>Farmácia Cadastrada:</strong> {cliente.cadastro_farmacia}</p>
+              <p><strong>Forma de Pagamento:</strong> {cliente.forma_pagamento}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-    
 }
 
 export default DisplayDetalhesCliente;

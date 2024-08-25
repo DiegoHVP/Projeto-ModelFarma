@@ -31,3 +31,9 @@
     vertical-align: middle;
     display: table-cell
 }
+
+.normalLink {
+    color: inherit; /* Usa a cor do texto normal */
+    text-decoration: none; /* Remove o sublinhado padrão */
+  }
+  

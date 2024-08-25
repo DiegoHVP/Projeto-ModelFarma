@@ -12,7 +12,8 @@ import { getApiUrl } from './getApiUrl';
 
 const Navigation = () => {
   const [userName, setUserName] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isClient, setIsClient] = useState<boolean>(false)
   const apiUrl = getApiUrl();
   
   useEffect(() => {
@@ -24,12 +25,12 @@ const Navigation = () => {
         return;
       }
 
-      const isClient = `${apiUrl}/cliente/me/`;
-      const isFarmaceutico = `${apiUrl}/farmaceutico/me/`;
+      const ApiClient = `${apiUrl}/cliente/me/`;
+      const ApiFarmaceutico = `${apiUrl}/farmaceutico/me/`;
 
       // PROCURE NOME
       try {
-        let response = await fetch(isFarmaceutico, {
+        let response = await fetch(ApiFarmaceutico, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -39,13 +40,14 @@ const Navigation = () => {
         if (response.ok) {
           const data = await response.json();
           setUserName( data.p_nome);
+          setIsClient(false);
           setIsAuthenticated(true);
           return;
         }
 
         //SE NÃO E FARMACEUTICO
         // BUSCA EM CLIENTE
-        response = await fetch(isClient, {
+        response = await fetch(ApiClient, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -55,7 +57,9 @@ const Navigation = () => {
         if (response.ok) {
           const data = await response.json();
           setUserName(data.nome);
+          setIsClient(true);
           setIsAuthenticated(true);
+          return;
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -100,7 +104,13 @@ const Navigation = () => {
               <div className={``}>
                 {isAuthenticated ? (
                   <div className={`d-flex ${custom.user_sair}`}>
+                  {/*SE CLIENTE VA PARA O PERFIL, SE FUNCIONARIO VA PARA PAINEL*/}
+                  <Link href={
+                    isClient? "/Account/perfilCliente":"/Account/login/gerenciar_med"} className={`${custom.normalLink}`} >
+                  
                     <span className="nav-item nav-link">{userName}</span>
+                    
+                    </Link>
                     <button className={`btn btn-link nav-item nav-link ${custom.sair}`} onClick={handleLogout}>Sair</button>
                   </div>
                 ) : (

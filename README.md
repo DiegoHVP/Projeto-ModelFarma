@@ -1,1 +1,1 @@
-test
+Neste repositorio o código esta um lixo, estou usando principalmente para testes. mas depois vou organizar os projetos (ou refazer que é o mais provavel) e ajusta-lo.

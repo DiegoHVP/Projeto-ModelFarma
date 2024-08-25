@@ -52,7 +52,7 @@ const Account = () => {
         window.location.href = '/'; // Se cliente va para home
        } else {
         window.location.href = '/Account/login/gerenciar_med'
-      }
+        }
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message || 'Erro ao tentar se conectar com a API.');

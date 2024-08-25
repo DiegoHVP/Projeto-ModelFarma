@@ -42,10 +42,17 @@ async def create_compra(compra: Compra):
 
         # REGISTRAR COMPRA
         dataSql = datetime.datetime.now().strftime('%Y-%m-%d')
-        cursor.execute(
+        if compra.cliente_id is not None:
+            cursor.execute(
             "INSERT INTO Compra (cliente_id, data_compra, quantidade, preco_total) VALUES (?, ?, ?, ?)",
             (compra.cliente_id, dataSql, sum(compra.quantidade), preco_total)
         )
+        else:
+            cursor.execute(
+                "INSERT INTO Compra (data_compra, quantidade, preco_total) VALUES (?, ?, ?)",
+                (dataSql, sum(compra.quantidade), preco_total)
+            )
+        
         compra_id = cursor.lastrowid
 
         # REGISTRAR A LISTA DE COMPRAS COM id DE COMPRA
@@ -210,6 +217,56 @@ async def delete_compra(id: int):
         cursor.execute(query, (id,))
         conn.commit()
         return {"message": f"Compra com ID {id} foi deletada"}
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        conn.rollback()
+        return {"error": str(e)}
+    finally:
+        conn.close()
+
+
+
+@router.get("/compra/me/{id}")
+async def get_compras(id: int):
+    conn, cursor = get_db_connection()
+    try:
+        # Verificar se o cliente tem compras
+        select_query = "SELECT * FROM Compra WHERE cliente_id = ?"
+        cursor.execute(select_query, (id,))
+        compras_data = cursor.fetchall()
+        
+        if not compras_data:
+            raise HTTPException(status_code=404, detail=f"Nenhuma compra encontrada para o cliente com ID {id}")
+        
+        compras = []
+        for compra_data in compras_data:
+            compra_id = compra_data[0]
+            
+            # Buscar medicamentos associados à compra
+            select_medicamentos_query = """
+            SELECT medicamento_id, quantidade 
+            FROM Compra_Medicamento 
+            WHERE compra_id = ?
+            """
+            cursor.execute(select_medicamentos_query, (compra_id,))
+            medicamentos_data = cursor.fetchall()
+            
+            # Estruturar os dados no formato desejado
+            compra = {
+                "id": compra_data[0],
+                "cliente_id": compra_data[1],
+                "data_compra": compra_data[2],
+                "quantidade": compra_data[3],
+                "preco_total": compra_data[4],
+                "medicamentos": [
+                    {"medicamento_id": med[0], "quantidade": med[1]} for med in medicamentos_data
+                ]
+            }
+            
+            compras.append(compra)
+        
+        return {"Compras": compras}
     except HTTPException as e:
         raise e
     except Exception as e:

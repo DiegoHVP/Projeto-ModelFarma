@@ -46,7 +46,6 @@ class Cliente(BaseModel):
     sobrenome: Optional[str] = None
 
 class Compra(BaseModel):
-    cliente_id: Optional[int]  # O cliente_id é opcional
-    medicamento_ids: list[int]  # Lista de IDs dos medicamentos
-    quantidade: list[int]  # Lista de quantidades correspondentes aos IDs dos medicamentos
-    #preco_total: float# Preço total da compra
+    cliente_id: Optional[int] = None
+    medicamento_ids: list[int]
+    quantidade: list[int]
