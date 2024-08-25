@@ -13,7 +13,7 @@ COPY . .
 
 # Expõe a porta em que o FastAPI vai rodar
 EXPOSE 8000
-ENV NEXT_PUBLIC_API_URL=https://projeto-modelfarma.onrender.com
+ENV NEXT_PUBLIC_API_URL=https://projetosite-modelfarma.onrender.com
 
 # Comando para iniciar a aplicação FastAPI
 CMD ["python3", "main.py"]
