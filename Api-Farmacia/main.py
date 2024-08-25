@@ -9,7 +9,8 @@ app = FastAPI()
 # Configurar as origens permitidas
 origins = [
     "http://localhost",
-    "http://localhost:3000",  # Exemplo: Se você estiver rodando uma aplicação React localmente na porta 3000
+    "http://localhost:3000",
+    "https://projetosite-modelfarma.onrender.com",
 ]
 
 # Adicionar middleware CORS à aplicação
