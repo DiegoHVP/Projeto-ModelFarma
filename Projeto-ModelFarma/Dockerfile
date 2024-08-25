@@ -16,6 +16,8 @@ RUN npm run build
 
 # Expõe a porta em que o Next.js vai rodar
 EXPOSE 3000
+ENV NEXT_PUBLIC_API_URL=https://projeto-modelfarma.onrender.com
+
 
 # Comando para iniciar a aplicação Next.js
 CMD ["npm", "run", "start"]
