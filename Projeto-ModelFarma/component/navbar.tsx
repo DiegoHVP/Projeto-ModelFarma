@@ -113,7 +113,7 @@ const Navigation = () => {
             <BuscarMed />
 
             <span className="navbar-nav me-auto mb-2 mb-lg-0">
-              <div className={``}>
+              <div>
                 {isAuthenticated ? (
                   <div className={`d-flex ${custom.user_sair}`}>
                     <Link href={isClient ? "/Account/perfilCliente" : "/Account/login/gerenciar_med"} className={`${custom.normalLink}`}>

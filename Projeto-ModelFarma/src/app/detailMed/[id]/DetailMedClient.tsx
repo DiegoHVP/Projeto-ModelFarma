@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useMedicamento } from "./useMedicamento";
 import Link from 'next/link';
 import { Medicamento } from "../../../../types/Medicamentos";
-import { getApiUrl } from "../../../../component/getApiUrl";
 
 
 interface DetailMedClientProps {
@@ -11,7 +10,7 @@ interface DetailMedClientProps {
 }
 
 export default function DetailMedClient({ med }: DetailMedClientProps) {
-  const apiUrl = getApiUrl();
+  const apiUrl = 'https://projetosite-modelfarma.onrender.com';
   useEffect( () => {
     document.title = `Medicamento: ${med.nome}` 
   })
