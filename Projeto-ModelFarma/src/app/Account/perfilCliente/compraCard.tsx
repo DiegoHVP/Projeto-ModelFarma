@@ -2,7 +2,6 @@
 import { useMedicamento } from "@/app/detailMed/[id]/useMedicamento";
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Certifique-se de que o Bootstrap está instalado e importado
-import { Medicamento } from './../../../../types/Medicamentos';
 
 interface CompraCardProps {
   compra: {
@@ -15,7 +14,7 @@ interface CompraCardProps {
 }
 
 const CompraCard: React.FC<CompraCardProps> = ({ compra }) => {
-  // Função para calcular o valor total dos medicamentos
+  // Calcular o valor total dos medicamentos
   const calcularTotalMedicamentos = () => {
     return compra?.medicamentos?.reduce((total, med) => {
       const medicamento = useMedicamento(med.medicamento_id).med;
@@ -37,7 +36,7 @@ const CompraCard: React.FC<CompraCardProps> = ({ compra }) => {
               <tr>
                 <th scope="col">Medicamentos</th>
                 <th scope="col">Quantidade</th>
-                <th scope="col">Preço</th>
+                <th scope="col">Preço unid.</th>
               </tr>
             </thead>
             <tbody>
@@ -46,8 +45,8 @@ const CompraCard: React.FC<CompraCardProps> = ({ compra }) => {
                 return (
                   <tr>
                     <td>{medicamento?.nome || 'Desconhecido'}</td>
-                    <td>{med?.quantidade}</td>
-                    <td>R${(medicamento?.preco || 0).toFixed(2)}</td>
+                    <td className="text-center">{med?.quantidade}</td>
+                    <td className="text-center">R${(medicamento?.preco || 0).toFixed(2)}</td>
                   </tr>
                 );
               })}

@@ -56,6 +56,21 @@ export default function CardMedicamentoBusca({ medicamento }: Props) {
     if (quantidade > 0) {
       atualizarCesta(quantidade - 1);  // Decrementa a quantidade do medicamento em 1 se a quantidade for maior que 0
     }
+  }
+    const compraItem = () => {
+      if (medicamento.id !== undefined ) {  // Verifica se o ID do medicamento está definido e a quantidade é maior que 0
+
+        let items= quantidade>1?quantidade:1;        
+        const compra = {
+          [medicamento.id]: Number(items),  // Cria um objeto com apenas o ID do medicamento e sua quantidade
+        };
+        
+        Cookies.set('cesta', JSON.stringify(compra));  // Salva a compra no cookie 'cesta'
+      } else {
+        console.error('O ID do medicamento não está definido ou a quantidade é 0.');
+      }
+      window.location.href = "/cesta"
+      
   };
 
   return (
@@ -112,7 +127,11 @@ export default function CardMedicamentoBusca({ medicamento }: Props) {
                 Adicionar à Cesta
               </button>
             )}
-            <button className="btn btn-success mt-2">Comprar</button>  {/* Botão para finalizar a compra */}
+            <button
+              className="btn btn-success mt-2"
+              onClick={compraItem}
+              >
+                Comprar</button>  {/* Botão para finalizar a compra */}
           </div>
         </div>
       </div>
