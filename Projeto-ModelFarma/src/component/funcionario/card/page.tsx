@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { getApiUrl } from "../../getApiUrl";
+import { getApiUrl } from "../../featchAPI/getApiUrl";
 import { Medicamento } from "../../../../types/Medicamentos";
 
 const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: Medicamento; setUpLista: (updated: boolean) => void }) => {
@@ -44,16 +44,16 @@ const CardMedicamento = ({ medicamento, setUpLista }: { medicamento: Medicamento
           <div className="card-body">
             <h5 className="card-title">{medicamento.nome}</h5>
             <p className="card-text">Preço: R${medicamento.preco.toFixed(2)}</p>
-            {medicamento.vencimento && <p className="card-text">Vencimento: {medicamento.vencimento}</p>}
-            {medicamento.quantidade !== undefined && <p className="card-text">Quantidade em estoque: {medicamento.quantidade}</p>}
+            <p className="card-text">Vencimento: {medicamento.vencimento}</p>
+            <p className="card-text">Quantidade em estoque: {medicamento.quantidade}</p>
           </div>
         </div>
         
         <div className="col-md-4 text-center">
           <div className="card-body">
-            {medicamento.faixa_etaria && <p className="card-text">Faixa Etária: {medicamento.faixa_etaria}</p>}
-            {medicamento.unidade !== undefined && <p className="card-text">Unidade (por caixa): {medicamento.unidade}</p>}
-            {medicamento.mg_ml && <p className="card-text">mg/ml: {medicamento.mg_ml}</p>}
+            <p className="card-text">Faixa Etária: {medicamento.faixa_etaria}</p>
+            <p className="card-text">Unidade (por caixa): {medicamento.unidade}</p>
+            <p className="card-text">mg/ml: {medicamento.mg_ml}</p>
           </div>
         </div>
 

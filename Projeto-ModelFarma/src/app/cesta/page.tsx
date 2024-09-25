@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 interface CartItem {
   id: number;
-  quantity: number;
+  qtd_item: number;
 }
 
 const CestaPage = () => {
@@ -22,10 +22,10 @@ const CestaPage = () => {
         // PEGA CESTA COMO OBJETOS
         const ObjCesta = JSON.parse(cesta);
         // Object.entries pega um objeto e retorna
-        //uma matriz chave valor
-        const items = Object.entries(ObjCesta).map(([id, quantity]) => ({
+        // um dicionario chave valor
+        const items = Object.entries(ObjCesta).map(([id, qtd_item]) => ({
           id: Number(id),
-          quantity: quantity as number,
+          qtd_item: qtd_item as number,
         }));
         // Guarda em CardtItems
         setCartItems(items);
@@ -46,7 +46,7 @@ const CestaPage = () => {
           const medicamento = await fetchMedicamento(item.id);
           // retorna um novo objeto com o atributo quantidade
           // se nao devolve nulo
-          return medicamento ? { ...medicamento, quantity: item.quantity } : null;
+          return medicamento ? { ...medicamento, qtd_item: item.qtd_item } : null;
         })
       );
       // retira os nulos
@@ -58,7 +58,7 @@ const CestaPage = () => {
 
   // Calcular o valor total
   useEffect(() => {
-    const total = medicamentos.reduce((_preco, med) => _preco + med.preco * med.quantity, 0);
+    const total = medicamentos.reduce((_preco, med) => _preco + med.preco * med.qtd_item, 0);
     setTotalPrice(total);
   }, [medicamentos]);
 
@@ -81,8 +81,8 @@ const CestaPage = () => {
         // atualiza CartItems
         setCartItems(
           cartItems.map(item => 
-            item.id === id ? { ...item, quantity: novaQuantidade } : item
-          ).filter(item => item.quantity > 0)
+            item.id === id ? { ...item, qtd_item: novaQuantidade } : item
+          ).filter(item => item.qtd_item > 0)
         );
       } catch (error) {
         console.error("Erro ao atualizar a cesta no cookie:", error);
@@ -94,14 +94,14 @@ const CestaPage = () => {
   const incrementarQuantidade = (id: number) => {
     const item = cartItems.find(item => item.id === id);
     if (item) {
-      atualizarCesta(id, item.quantity + 1);
+      atualizarCesta(id, item.qtd_item + 1);
     }
   };
 
   const decrementarQuantidade = (id: number) => {
     const item = cartItems.find(item => item.id === id);
-    if (item && item.quantity > 1) {
-      atualizarCesta(id, item.quantity - 1);
+    if (item && item.qtd_item > 1) {
+      atualizarCesta(id, item.qtd_item - 1);
     }
   };
 
@@ -130,17 +130,17 @@ const CestaPage = () => {
                 <div>
                   <h5>{med.nome}</h5>
                   <p className="mb-1">Preço Unitário: R$ {med.preco.toFixed(2)}</p>
-                  <p className="mb-1">Subtotal: R$ {(med.preco * med.quantity).toFixed(2)}</p>
+                  <p className="mb-1">Subtotal: R$ {(med.preco * med.qtd_item).toFixed(2)}</p>
                 </div>
                 <div className="d-flex align-items-center">
                   <button 
                     className="btn btn-outline-secondary me-2" 
                     onClick={() => decrementarQuantidade(med.id)}
-                    disabled={med.quantity <= 1}
+                    disabled={med.qtd_item <= 1}
                   >
                     &#9664;
                   </button>
-                  <span className="px-3">{med.quantity}</span>
+                  <span className="px-3">{med.qtd_item}</span>
                   <button 
                     className="btn btn-outline-secondary me-3" 
                     onClick={() => incrementarQuantidade(med.id)}

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { fetchMedicamento } from '../fetchMedicamento'; // Importando o hook fetchMedicamento
 import { Medicamento } from '../../../../types/Medicamentos';
-import { getApiUrl } from '../../../component/getApiUrl';
+import { getApiUrl } from '../../../component/featchAPI/getApiUrl';
 
 const Pagamento = () => {
   const [cliente, setCliente] = useState<any>(null);
@@ -17,7 +17,7 @@ const Pagamento = () => {
       const token = Cookies.get('token');
       if (token) {
         try {
-          const response = await fetch(`${apiUrl}/cliente/me/`, {
+          const response = await fetch(`${apiUrl}/cliente/logado`, {
             method: 'GET',
             headers: {
               'Authorization': `Bearer ${token}`,
@@ -28,11 +28,10 @@ const Pagamento = () => {
             setCliente(data);
           } else {
             setCliente(null);
-            alert('Erro ao obter informações do usuário.');
           }
         } catch (error) {
           console.error('Erro na requisição:', error);
-          alert('Erro ao obter informações do usuário.');
+          alert('Algo inexperado ocorreu.');
         }
       } else {
         setCliente(null);
@@ -77,11 +76,11 @@ const Pagamento = () => {
   }, [apiUrl]);
 
   const confirmarPagamento = async () => {
-    const medicamento_ids = medicamentosComprados.map((med) => med.id);
+    const medicamentos_ids = medicamentosComprados.map((med) => med.id);
     const quantidade = medicamentosComprados.map((med) => med.quantidade);
 
     const body: any = {
-      medicamento_ids,
+      medicamentos_ids,
       quantidade,
     };
 
@@ -97,7 +96,6 @@ const Pagamento = () => {
         },
         body: JSON.stringify(body),
       });
-
       if (response.ok) {
         alert("Pagamento concluído com sucesso!");
         Cookies.remove('cesta'); // Limpa a cesta de compras

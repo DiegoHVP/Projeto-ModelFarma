@@ -1,4 +1,4 @@
-import { getApiUrl } from "../../component/getApiUrl";
+import { getApiUrl } from "../../component/featchAPI/getApiUrl";
 export async function fetchMedicamento(id: number) {
   const apiUrl = getApiUrl();  
   try {
@@ -11,7 +11,7 @@ export async function fetchMedicamento(id: number) {
   
       if (!response.ok) throw new Error("Erro ao buscar medicamento.");
   
-      const { Medicamento } = await response.json();
+      const Medicamento  = await response.json();
       return Medicamento;
     } catch (error) {
       console.error("Erro ao buscar dados da API", error);

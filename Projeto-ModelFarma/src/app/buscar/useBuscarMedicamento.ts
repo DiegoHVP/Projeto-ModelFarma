@@ -1,6 +1,6 @@
 import { useState, useEffect } from'react';
 import { Medicamento } from '../../../types/Medicamentos';
-import { getApiUrl } from '../../component/getApiUrl';
+import { getApiUrl } from '../../component/featchAPI/getApiUrl';
 
 
 export const useBuscarMedicamento = () => {
@@ -11,7 +11,7 @@ export const useBuscarMedicamento = () => {
 
   const buscarMedicamento = async (busca_med: string) => {
     setLoading(true);
-    console.log(`${apiUrl}/medicamento/?nome=${busca_med}`)
+
     try {
       const response = await fetch(`${apiUrl}/medicamento/?nome=${busca_med}`, {
         method: 'GET',
@@ -24,7 +24,8 @@ export const useBuscarMedicamento = () => {
       }
 
       const data = await response.json();
-      setMed(data.Medicamentos);
+      setMed(data);
+      console.log(med)
       setError('');
     } catch (error) {
       setError('Erro ao buscar med. Por favor, tente novamente.');
@@ -46,6 +47,8 @@ export const useBuscarMedicamento = () => {
       document.title = "Nenhum medicamento encontrado";
     }
   }, []);
+
+
 
   return { loading, med, error};
 };

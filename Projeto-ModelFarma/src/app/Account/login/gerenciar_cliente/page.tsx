@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { Cliente } from '../../../../../types/Cliente';
-import { getApiUrl } from '../../../../component/getApiUrl';
+import { getApiUrl } from '../../../../component/featchAPI/getApiUrl';
 
 
 const ListarClientes = () => {
@@ -19,7 +19,7 @@ const ListarClientes = () => {
         if (data.message) {
           setMessage(data.message);
         } else {
-          setClientes(data.Clientes);
+          setClientes(data);
           
         }
       } else {

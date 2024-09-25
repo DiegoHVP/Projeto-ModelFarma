@@ -13,7 +13,12 @@ COPY . .
 
 # Expõe a porta em que o FastAPI vai rodar
 EXPOSE 8000
-ENV NEXT_PUBLIC_API_URL=https://projetosite-modelfarma.onrender.com
+
+# URL do site para add middleware CORS e permitir os métodos HTTP e cabeçalhos
+ENV NEXT_URL_SITE=https://UrlDoSiteQueFazAsRequisicoes.com
+
+# String de conexão com o banco de dados
+ENV DATABASE_URL=banco://usuario:senha@localnarede:porta/nome_banco
 
 # Comando para iniciar a aplicação FastAPI
 CMD ["python3", "main.py"]

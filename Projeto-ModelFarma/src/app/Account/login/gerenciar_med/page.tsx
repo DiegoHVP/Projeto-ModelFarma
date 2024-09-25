@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import CardMedicamento from "../../../../component/funcionario/card/page";
 import Cookies from 'js-cookie';
 import { Medicamento } from "../../../../../types/Medicamentos";
-import { getApiUrl } from "../../../../component/getApiUrl";
+import { getApiUrl } from "../../../../component/featchAPI/getApiUrl";
 
 
 const GerenciarMed = () => {
@@ -27,7 +27,7 @@ const GerenciarMed = () => {
     }
 
     try {
-      const response = await fetch(`${apiUrl}/farmaceutico/me/`, {
+      const response = await fetch(`${apiUrl}/farmaceutico/logado`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -56,22 +56,19 @@ const GerenciarMed = () => {
   const ListarMedicamentos = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`${apiUrl}/medicamento/`);
+      const response = await fetch(`${apiUrl}/medicamento`);
 
-      if (!response.ok) {
-        throw new Error('Erro ao buscar os dados');
-      }
+      if (!response.ok) {  throw new Error('Erro ao buscar os dados');   }
 
       const data = await response.json();
 
       // Verifica se `data.Medicamentos` é um array antes de definir o estado
-      if (Array.isArray(data.Medicamentos)) {
-        setMed(data.Medicamentos);
+      if (Array.isArray(data)) {
+        setMed(data);
       } else {
         setMed([]); // Garante que `med` seja um array vazio caso a resposta seja inesperada
       }
-    } catch (error) {
-      console.error('Algo de errado ocorreu:', error);
+    } catch (error) {  console.error('Algo de errado ocorreu:', error);
     } finally {
       setLoading(false);
     }

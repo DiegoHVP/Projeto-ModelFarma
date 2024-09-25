@@ -1,0 +1,58 @@
+# Geral
+*.log
+*.env
+.DS_Store
+.vscode/
+.idea/
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Docker
+docker-compose.override.yml
+*.env
+.dockerignore
+
+# Python (API-Farmacia)
+env/
+venv/
+.Python
+db.sqlite3
+celerybeat-schedule
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches
+*.mypy_cache/
+.pytest_cache/
+.tox/
+coverage/
+htmlcov/
+dist/
+build/
+
+# Next.js (Projeto-ModelFarma)
+.next/
+out/
+.cache/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar arquivos de build do frontend
+*.next
+out/
+*.map
+
+# Arquivos de lock (caso utilize yarn)
+yarn.lock
+
+# Logs e relatórios de dependências
+npm-debug.log*
+yarn-error.log*

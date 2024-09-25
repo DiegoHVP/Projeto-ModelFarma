@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import Navbar from "./navbar";
-import Footer from "./footer";
+import Navbar from "./geral/navbar/navbar";
+import Footer from "./geral/footer";
 
 interface MainContainer {
     children: ReactNode;

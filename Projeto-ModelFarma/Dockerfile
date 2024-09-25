@@ -12,8 +12,10 @@ RUN npm install
 # Copia o restante do código da aplicação para o contêiner
 COPY . .
 
+# URL de conexão com o banco de dados.
+ENV NEXT_PUBLIC_API_URL=https://UrlDaApi.com
+
 # Compila o projeto Next.js
-ENV NEXT_PUBLIC_API_URL=https://projeto-modelfarma.onrender.com
 RUN npm run build
 
 EXPOSE 3000

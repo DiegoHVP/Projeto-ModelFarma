@@ -4,7 +4,7 @@ import Link from"next/link";
 import"bootstrap/dist/css/bootstrap.min.css";
 import Head from'next/head';
 import Cookies from 'js-cookie';
-import { getApiUrl } from '../../../component/getApiUrl';
+import { getApiUrl } from '../../../component/featchAPI/getApiUrl';
 
 
 const Account = () => {
@@ -22,7 +22,7 @@ const Account = () => {
   const handleLogin = async () => {
     try {
       // BUSQUE
-      const endpoint = isClient ? `${apiUrl}/cliente/token` : `${apiUrl}/farmaceutico/token/`;
+      const endpoint = isClient ? `${apiUrl}/cliente/login` : `${apiUrl}/farmaceutico/login/`;
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
@@ -52,15 +52,20 @@ const Account = () => {
         window.location.href = '/'; // Se cliente va para home
        } else {
         window.location.href = '/Account/login/gerenciar_med'
-        }
+      }
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message || 'Erro ao tentar se conectar com a API.');
       } else {
         setError('Erro desconhecido.');
+      }
     }
   }
-  }
+
+  // TIRA MSG ERRO, SE MEXER NO CPF OU SENHA
+  useEffect(() => {
+    setError("")
+  }, [cpf, password])
 
   return (
     <><Head><meta name="viewport" content="width=device-width, initial-scale=1" /></Head>

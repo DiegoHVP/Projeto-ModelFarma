@@ -1,20 +1,18 @@
 from fastapi import FastAPI
-from endpoints import farmaceutico, medicamento, fornecedor, cliente, farmacia, compra
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
+from core.configs import settings
+from api.v1.api import api_router
 import os
 
+app = FastAPI(title='ModelFarma - Projeto Modelo de Farmacia')
+app.include_router(api_router, prefix=settings.API_V1_STR)
+api_url = os.getenv('NEXT_PUBLIC_URL_SITE')
 
-#api_url = os.getenv('NEXT_PUBLIC_API_URL')
-
-app = FastAPI()
-
-# Configurar as origens permitidas
 origins = [
     "http://localhost",
     "http://localhost:3000",
-    #api_url, # APENAS PARA TESTES
-    'https://projetosite-modelfarma.onrender.com'
+    api_url,
 ]
 
 # Adicionar middleware CORS à aplicação
@@ -27,13 +25,9 @@ app.add_middleware(
 )
 
 
-app.include_router(medicamento.router)
-app.include_router(fornecedor.router)
-app.include_router(cliente.router)
-app.include_router(farmaceutico.router)
-app.include_router(farmacia.router)
-app.include_router(compra.router)
 
-if __name__ == "__main__":
-    from uvicorn import run
-    run("main:app", host="0.0.0.0", port=8000, reload=True, log_level="info")
+if __name__ == '__main__':
+    import uvicorn
+
+    uvicorn.run("main:app", host="0.0.0.0", port=8000,
+                log_level='info', reload=True)

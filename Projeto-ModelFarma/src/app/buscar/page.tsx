@@ -6,6 +6,7 @@ import MedicamentoDisplay from './MedicamentoDisplay';
 const BuscarMedicamento: React.FC = () => {
   const { loading, med, error} = useBuscarMedicamento();
 
+
   return (
     <>
     

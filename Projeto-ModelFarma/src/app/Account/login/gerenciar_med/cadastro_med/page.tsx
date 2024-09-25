@@ -2,23 +2,20 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Medicamento } from "../../../../../../types/Medicamentos";
-import { getApiUrl } from "../../../../../component/getApiUrl";
+import { getApiUrl } from "../../../../../component/featchAPI/getApiUrl";
 
 const CadastroMed = () => {
-  const [Med, setMed] = useState<Medicamento>({
-    nome: "",
-    preco: 0.1,
-  });
+  
+  const [Med, setMed] = useState<Medicamento>({ nome: "", preco: 0.1, });
 
   const [OK, setOK] = useState<boolean>(false);
   const apiUrl = getApiUrl();
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
 
-    setMed({
-      ...Med,
-      [name]: type === "checkbox" ? checked : value,
-    });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    const { name, value, type, checked } = e.target;
+    setMed({ ...Med, [name]: type === "checkbox" ? checked : value });
+
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,48 +24,36 @@ const CadastroMed = () => {
     const MedToSend = { ...Med };
 
     // Remover a lógica de transformar arrays vazios em ['']
-    if (Med.similares?.length === 0) {
-      MedToSend.similares = [];
-    }
-    if (Med.genericos?.length === 0) {
-      MedToSend.genericos = [];
-    }
-    if (Med.alergias?.length === 0) {
-      MedToSend.alergias = [];
-    }
+    if (Med.similares?.length === 0) { MedToSend.similares = []; }
+    if (Med.genericos?.length === 0) { MedToSend.genericos = []; }
+    if (Med.alergias?.length === 0) { MedToSend.alergias = []; }
 
     try {
-      const response = await fetch(`${apiUrl}/medicamento/`, {
+      const response = await fetch(`${apiUrl}/medicamento`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(MedToSend),
       });
+      console.log(MedToSend)
 
       if (response.ok) {
         setOK(true);
         clearForm();
         window.scrollTo(0, 0);
+
       } else {
         setOK(false);
         console.error("Erro ao enviar:", response.statusText);
+      
       }
-    } catch (error) {
-      console.error("Erro ao realizar operação:", error);
-    }
+    } catch (error) { console.error("Erro ao realizar operação:", error); }
   };
 
-  const clearForm = () => {
-    setMed({
-      nome: "",
-      preco: 0.1,
-    });
-  };
+  const clearForm = () => { setMed({ nome: "", preco: 0.1, }); };
 
-  useEffect(() => {
-    document.title = "Cadastrar Medicamento";
-  }, []);
+  useEffect(() => { document.title = "Cadastrar Medicamento"; }, []);
 
   return (
     <div className="container my-5">
@@ -203,10 +188,12 @@ const CadastroMed = () => {
                 name="alergias"
                 value={Med.alergias?.join(", ") || ""}
                 onChange={(e) =>
+                  
                   setMed({
                     ...Med,
                     alergias: e.target.value.split(",").map((a) => a.trim()),
                   })
+
                 }
               />
             </div>
@@ -229,10 +216,12 @@ const CadastroMed = () => {
                 name="similares"
                 value={Med.similares?.join(", ") || ""}
                 onChange={(e) =>
+                
                   setMed({
                     ...Med,
                     similares: e.target.value.split(",").map((s) => s.trim()),
                   })
+
                 }
               />
             </div>
@@ -245,10 +234,12 @@ const CadastroMed = () => {
                 name="genericos"
                 value={Med.genericos?.join(", ") || ""}
                 onChange={(e) =>
+                
                   setMed({
                     ...Med,
                     genericos: e.target.value.split(",").map((g) => g.trim()),
                   })
+
                 }
               />
             </div>

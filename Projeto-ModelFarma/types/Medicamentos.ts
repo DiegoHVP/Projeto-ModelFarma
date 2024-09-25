@@ -2,8 +2,8 @@
 export interface Medicamento {
   id?: number;
   nome: string;
-  vencimento?: string;
   preco: number;
+  vencimento?: string;
   quantidade?: number; //estoque
   alergias?: string[];
   faixa_etaria?: string;

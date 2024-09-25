@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getApiUrl } from "../../../component/getApiUrl";
+import { getApiUrl } from "../../../component/featchAPI/getApiUrl";
 
 export function useMedicamento(id: number) {
   const [med, setMed] = useState<any | null>(null);
@@ -22,7 +22,7 @@ export function useMedicamento(id: number) {
         }
 
         const data = await response.json();
-        setMed(data.Medicamento);
+        setMed(data);
        
       } catch (error) {
         console.error("Erro ao buscar dados da API ", error);
