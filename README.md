@@ -1,6 +1,6 @@
 # Projeto ModelFarma
 
-**Projeto ModelFarma** é um projeto de site para farmácias, composto por dois serviços principais: uma API para gerenciar operações farmacêuticas (reconstruida com usando SQLlchemy e padrões de projeto, [versão antiga](https://github.com/DiegoHVP/Projeto-ApiFarmacia)) e um site para interação com o usuário . O projeto é executado usando Docker para facilitar a implementação e o gerenciamento de ambientes.
+**Projeto ModelFarma** é um projeto de site para farmácias, composto por dois serviços principais: uma API para gerenciar operações farmacêuticas (reconstruida usando SQLlchemy e padrões de projeto, [versão antiga](https://github.com/DiegoHVP/Projeto-ApiFarmacia)) e um site para interação com o usuário . O projeto é executado usando Docker para facilitar a implementação e o gerenciamento de ambientes.
 
 ## Estrutura do Projeto
 
