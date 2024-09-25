@@ -1,6 +1,6 @@
-# ModelFarma
+# Projeto ModelFarma
 
-**ModelFarma** é um projeto de site para farmácias, composto por dois serviços principais: uma API para gerenciar operações farmacêuticas (reconstruida com usando SQLlchemy e padrões de projeto, (versão antiga)[https://github.com/DiegoHVP/Projeto-ApiFarmacia]) e um site para interação com o usuário . O projeto é executado usando Docker para facilitar a implementação e o gerenciamento de ambientes.
+**Projeto ModelFarma** é um projeto de site para farmácias, composto por dois serviços principais: uma API para gerenciar operações farmacêuticas (reconstruida com usando SQLlchemy e padrões de projeto, [versão antiga](https://github.com/DiegoHVP/Projeto-ApiFarmacia)) e um site para interação com o usuário . O projeto é executado usando Docker para facilitar a implementação e o gerenciamento de ambientes.
 
 ## Estrutura do Projeto
 
@@ -31,9 +31,11 @@ Certifique-se de ter as seguintes ferramentas instaladas no seu sistema:
 ### Clonando o repositório
 
 ```bash
-git clone https://github.com/usuario/ModelFarma.git
-cd ModelFarma
+git clone https://github.com/DiegoHVP/Projeto-ModelFarma.git
+cd Projeto-ModelFarma
 ```
+
+Antes de usar, ajustes as variaveis de ambiente a seu uso. Elas estão presentes no Dockerfile de cada projeto.
 
 ### Usando Docker
 
@@ -56,7 +58,7 @@ cd ModelFarma
 ### Estrutura dos Diretórios
 
 ```
-/ModelFarma
+/Projeto-ModelFarma
 │
 ├── /api-farmacia        # Diretório do backend (FastAPI)
 │   ├── app/
@@ -73,11 +75,12 @@ cd ModelFarma
 
 - **API-Farmacia**:
   - `DATABASE_URL`: URL de conexão com o banco de dados.
+  - `NEXT_URL_SITE`: URL do site do frontend dar permição dos métodos HTTP e cabeçalhos
 
 - **Projeto-ModelFarma**:
   - `NEXT_PUBLIC_API_URL`: URL da API-Farmacia.
 
-Crie um arquivo `.env` em cada serviço para configurar essas variáveis de ambiente.
+
 
 ## Documentação da API
 
@@ -87,6 +90,7 @@ A API-Farmacia expõe as seguintes rotas principais:
 - **Farmacêuticos**: Cadastro e listagem de farmacêuticos.
 - **Fornecedores**: Cadastro e controle de fornecedores.
 - **Clientes**: Gestão de clientes e seus pedidos.
+- **Farmacias**: Referente a sede fisica da farmacia.
 - **Compras**: Registro de transações de compra de medicamentos.
 
 Acesse a documentação completa em `http://localhost:8000/docs`.
