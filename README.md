@@ -61,12 +61,36 @@ Antes de usar, ajustes as variaveis de ambiente a seu uso. Elas estão presentes
 /Projeto-ModelFarma
 │
 ├── /api-farmacia        # Diretório do backend (FastAPI)
-│   ├── app/
+│   ├── api/
+|   |    ├── endpoints/
+|   |    |       └── ...
+|   |    └── api.py
+│   ├── core/
+|   |    └── ...
+│   ├── models/
+|   |    └── ...
+│   ├── schemas/
+|   |    └── ...
+│   ├── cria_tabelas.py
+│   ├── main.py
+│   ├── requeriments.txt
 │   └── Dockerfile
 │
 ├── /projeto-modelfarma  # Diretório do frontend (Next.js)
-│   ├── pages/
-│   └── Dockerfile
+│   ├── types/
+|   ├── public/
+│   ├── src/
+|   |   ├── app/
+|   |   |    └── ... 
+|   |   └── component/
+|   |        └── ...
+│   ├── .gitignore
+│   ├── Dockerfile
+│   ├── next-env.d.ts
+│   ├── next.config.mjs
+│   ├── tsconfig.json
+│   ├── package-lock.json
+|   └── package.json
 │
 └── docker-compose.yml   # Arquivo para orquestração dos serviços
 ```
