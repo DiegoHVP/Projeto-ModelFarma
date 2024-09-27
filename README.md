@@ -99,7 +99,7 @@ Antes de usar, ajustes as variaveis de ambiente a seu uso. Elas estão presentes
 
 - **API-Farmacia**:
   - `DATABASE_URL`: URL de conexão com o banco de dados.
-  - `NEXT_URL_SITE`: URL do site do frontend dar permição dos métodos HTTP e cabeçalhos
+  - `NEXT_URL_SITE`: URL do site do frontend para dar permissões dos métodos HTTP e cabeçalhos
 
 - **Projeto-ModelFarma**:
   - `NEXT_PUBLIC_API_URL`: URL da API-Farmacia.
