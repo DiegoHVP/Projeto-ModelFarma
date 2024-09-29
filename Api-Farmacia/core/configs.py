@@ -2,6 +2,7 @@ from pathlib import Path
 from typing import List, ClassVar
 from pydantic_settings import BaseSettings
 from sqlalchemy.ext.declarative import declarative_base
+import os
 
 
 
@@ -19,7 +20,6 @@ class Settings(BaseSettings):
     DB_URL: str = f'sqlite:///{arquivo_db}'
     """
 
-    import os
 
     DB_URL: str = os.getenv('DATABASE_URL')
     DBBaseModel: ClassVar = declarative_base()
@@ -27,10 +27,11 @@ class Settings(BaseSettings):
     """
     import secrets
 
-    token: str = secrets.token_urlsafe(NUMERO)
+    token: str = secrets.token_urlsafe(32)
     # GERA UM JWT_SECRET
     """
-    JWT_SECRET: str = 'KEY_PARA_GERAR_JWT'
+    JWT_SECRET: str = 'KEY_JWT'
+    
     ALGORITHM: str = 'HS256'
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7
 

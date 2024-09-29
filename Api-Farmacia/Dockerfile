@@ -5,8 +5,8 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Copia o arquivo de requisitos e instala as dependências
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requeriments.txt .
+RUN pip install --no-cache-dir -r requeriments.txt
 
 # Copia o código da aplicação
 COPY . .
@@ -16,6 +16,7 @@ EXPOSE 8000
 
 # URL do site para add middleware CORS e permitir os métodos HTTP e cabeçalhos
 ENV NEXT_URL_SITE=https://UrlDoSiteQueFazAsRequisicoes.com
+
 
 # String de conexão com o banco de dados
 ENV DATABASE_URL=banco://usuario:senha@localnarede:porta/nome_banco

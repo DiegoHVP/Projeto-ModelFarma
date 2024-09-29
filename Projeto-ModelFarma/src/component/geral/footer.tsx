@@ -3,10 +3,10 @@ import Link from "next/link";
 import Img from "next/image"
 import custom from "./footer.module.css"
 
-import Facebook from "./svgs/facebook.svg";
-import Github from "./svgs/github.svg";
-import Instagram from "./svgs/instagram.svg";
-import Twitter from "./svgs/twitter-x.svg";
+import Facebook from "../../../public/svgs/facebook.svg";
+import Github from "../../../public/svgs/github.svg";
+import Instagram from "../../../public/svgs/instagram.svg";
+import Twitter from "../../../public/svgs/twitter-x.svg";
 
 export default function Footer() {
 

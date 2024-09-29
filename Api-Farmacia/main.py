@@ -7,12 +7,12 @@ import os
 
 app = FastAPI(title='ModelFarma - Projeto Modelo de Farmacia')
 app.include_router(api_router, prefix=settings.API_V1_STR)
-api_url = os.getenv('NEXT_PUBLIC_URL_SITE')
+site_url = os.getenv('NEXT_URL_SITE')
 
 origins = [
     "http://localhost",
     "http://localhost:3000",
-    api_url,
+    site_url,
 ]
 
 # Adicionar middleware CORS à aplicação

@@ -1,13 +1,18 @@
 'use client'
 import Link from 'next/link';
 import Image from 'next/image';
+
 import "bootstrap/dist/css/bootstrap.css";
+
 import custom from "./navbar.module.css";
 import { useState, useEffect } from 'react';
 import BuscarMed from './formBuscarMed';
-import login_SVG from '../../public/svgs/login.svg';
-import bag_SVG from '../../public/svgs/bag.svg';
+
+import login_SVG from '../../../../public/svgs/login.svg';
+import bag_SVG from '../../../../public/svgs/bag.svg';
+
 import Cookies from 'js-cookie';
+
 import { getApiUrl } from '../../featchAPI/getApiUrl';
 
 const Navigation = () => {
